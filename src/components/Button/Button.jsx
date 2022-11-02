@@ -1,0 +1,28 @@
+export function Button({ children, onClick, className }) {
+  return (
+    <button
+      className={`
+        w-full
+        bg-[#8257E5]
+        text-white
+        py-3
+        shadow-sm
+        rounded-lg
+        outline-none
+        ${className}
+        active:bg-[#b396f7]
+
+        md:transition
+        md:ease-in
+        md:duration-100
+        md:hover:scale-105
+        md:active:bg-[#8257E5]
+        md:active:scale-100
+      `}
+      onClick={onClick}
+      type="button"
+    >
+      {children}
+    </button>
+  );
+}
