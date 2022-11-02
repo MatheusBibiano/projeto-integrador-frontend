@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/Input/Input";
 import { Button } from "../components/Button/Button";
+import { useAuth } from "../contexts/AuthContext";
 
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
@@ -10,22 +11,35 @@ import logo from "../assets/icons/logo.svg";
 import image from "../assets/images/loginImage.svg";
 
 export function LoginPage() {
+  const { authenticate } = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   function isFormDataValid() {
+    setUsername(username.trim());
+    setPassword(password.trim());
     return username && password;
   }
 
-  function doLogin() {
+  async function login() {
     if (isFormDataValid()) {
-      navigate("/dashboard");
+      const user = {
+        Username: username,
+        Password: password,
+        Type: 99,
+        FkPessoa: 0,
+      };
+
+      if (await authenticate(user)) {
+        navigate("/dashboard");
+      }
     }
   }
 
   return (
-    <div className="
+    <div
+      className="
         flex
         items-center
         justify-center
@@ -101,7 +115,7 @@ export function LoginPage() {
           icon={<HiLockClosed className="text-[#A1A1AA] text-lg" />}
         />
 
-        <Button onClick={doLogin} className="mt-20">
+        <Button onClick={login} className="mt-20">
           Entrar
         </Button>
       </form>
