@@ -1,11 +1,23 @@
+import { useEffect } from "react";
 import { Rating } from "../components/Rating/Rating";
 import { Loading } from "../components/Loading/Loading";
 import { useRatings } from "../contexts/RatingsContext";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 import noRatings from "../assets/icons/noRatings.svg";
 
 export function ColabPage() {
   const { data } = useRatings();
+  const { isLogged, logout } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLogged) {
+      logout();
+      navigate("/login");
+    }
+  }, [isLogged]);
 
   const rows = data?.map((rating) => (
     <Rating key={rating.idAval} data={rating} />

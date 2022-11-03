@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { RatingContextProvider } from "./contexts/RatingsContext";
+import { AuthContextProvider } from "./contexts/AuthContext";
 
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { LoginPage } from "./pages/LoginPage";
@@ -12,13 +13,22 @@ export function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
-        <Route path="/" element={<LoginPage />} />
+        <Route
+          path="/login"
+          element={
+            <AuthContextProvider>
+              <LoginPage />
+            </AuthContextProvider>
+          }
+        />
         <Route
           path="/dashboard"
           element={
-            <RatingContextProvider>
-              <ColabPage />
-            </RatingContextProvider>
+            <AuthContextProvider>
+              <RatingContextProvider>
+                <ColabPage />
+              </RatingContextProvider>
+            </AuthContextProvider>
           }
         />
         <Route

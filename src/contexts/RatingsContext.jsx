@@ -6,7 +6,7 @@ const RatingContext = createContext();
 
 export function RatingContextProvider({ children }) {
   // GET ALL
-  const { data, mutate } = useAxios("/Listar");
+  const { data, mutate } = useAxios("Avaliacao/Listar");
 
   // POST
   function handleAddRating(newRating) {
