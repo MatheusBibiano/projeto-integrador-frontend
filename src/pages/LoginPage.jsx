@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/Input/Input";
 import { Button } from "../components/Button/Button";
@@ -11,10 +11,14 @@ import logo from "../assets/icons/logo.svg";
 import image from "../assets/images/loginImage.svg";
 
 export function LoginPage() {
-  const { authenticate } = useAuth();
+  const { authenticate, logout } = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    logout();
+  }, []);
 
   function isFormDataValid() {
     setUsername(username.trim());
@@ -27,12 +31,19 @@ export function LoginPage() {
       const user = {
         Username: username,
         Password: password,
-        Type: 99,
-        FkPessoa: 0,
+        Type: undefined,
+        FkPessoa: null,
       };
 
       if (await authenticate(user)) {
-        navigate("/dashboard");
+        switch (sessionStorage.getItem("type")) {
+          case "0":
+            navigate("/");
+            break;
+          case "1":
+            navigate("/dashboard");
+            break;
+        }
       }
     }
   }

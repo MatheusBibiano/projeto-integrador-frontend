@@ -5,8 +5,10 @@ import { axiosAPI } from "../services/axios";
 const RatingContext = createContext();
 
 export function RatingContextProvider({ children }) {
-  // GET ALL
-  const { data, mutate } = useAxios("Avaliacao/Listar");
+  // GET
+  const { data, mutate } = useAxios(
+    `Avaliacao/Listar/${sessionStorage.getItem("discId")}`
+  );
 
   // POST
   function handleAddRating(newRating) {
@@ -17,7 +19,9 @@ export function RatingContextProvider({ children }) {
   // DELETE
   function handleRemoveRating(rating) {
     axiosAPI.delete("/Excluir", { data: rating });
-    const updateRatings = data?.filter((current) => current.idAval !== rating.idAval);
+    const updateRatings = data?.filter(
+      (current) => current.idAval !== rating.idAval
+    );
     mutate(updateRatings, false);
   }
 

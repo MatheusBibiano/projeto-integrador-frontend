@@ -4,13 +4,19 @@ import { Loading } from "../components/Loading/Loading";
 import { useRatings } from "../contexts/RatingsContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { useColab } from "../contexts/ColabContext";
 
 import noRatings from "../assets/icons/noRatings.svg";
 
 export function ColabPage() {
   const { data } = useRatings();
   const { isLogged, logout } = useAuth();
+  const { fkPerson, getDashboardColabData } = useColab();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getDashboardColabData(fkPerson);
+  }, []);
 
   useEffect(() => {
     if (!isLogged) {
@@ -50,7 +56,7 @@ export function ColabPage() {
         "
       >
         <h1 className="text-3xl md:text-5xl font-extrabold text-[#29292E]">
-          Desenvolvimento Web III
+          {sessionStorage.getItem("discNome")}
         </h1>
       </header>
 

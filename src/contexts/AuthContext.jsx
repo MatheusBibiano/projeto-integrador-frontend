@@ -13,7 +13,7 @@ export function AuthContextProvider({ children }) {
     const res = await axiosAPI.post("Auth/Authenticate", user);
 
     if (res.status == 200 && res.data) {
-      defineUserCredentials(res.data);
+      storeUserCredentials(res.data);
       setIsLogged(true);
       return true;
     }
@@ -21,12 +21,12 @@ export function AuthContextProvider({ children }) {
     return false;
   }
 
-  function defineUserCredentials(user) {
+  function storeUserCredentials(user) {
     setUserCredentials(user);
     sessionStorage.setItem("isLogged", true);
     sessionStorage.setItem("username", user.username);
     sessionStorage.setItem("type", user.type);
-    sessionStorage.setItem("fk", user.fkPessoa);
+    sessionStorage.setItem("fkPessoa", user.fkPessoa);
   }
 
   function logout() {
