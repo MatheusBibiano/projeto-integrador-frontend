@@ -44,9 +44,9 @@ export function ColabPage() {
           flex justify-center items-center
           py-4
           bg-[#201f22]/80
-          border-b-2 border-[#151416]
+          border-b-2 border-[#151416]/30
           w-full
-          backdrop-blur-sm
+          backdrop-blur-md
         "
       >
         <h1 className="text-3xl md:text-5xl font-extrabold text-[#FEFEFE] max-w-fit">
@@ -60,6 +60,7 @@ export function ColabPage() {
           px-4
           w-full
           md:px-10
+          mb-10
         "
       >
         <header className="flex items-center justify-start mb-5 w-full">

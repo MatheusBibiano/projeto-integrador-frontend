@@ -76,7 +76,7 @@ export function Rating({ data }) {
             <BiTrashAlt
               className="
               text-[#FEFEFE]/50
-              group-hover:text-red-400
+              group-hover:text-[#fa5268]
             "
               size={24}
             />
