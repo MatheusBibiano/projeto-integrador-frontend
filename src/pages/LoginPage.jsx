@@ -87,12 +87,9 @@ export function LoginPage() {
           md:p-10
           md:w-2/5
 
-          bg-transparent
-          md:bg-white
+          bg-[#2b292e]
 
           rounded-none
-          md:rounded-tr-lg
-          md:rounded-br-lg
 
           shadow-none
           md:shadow-2xl
@@ -106,7 +103,7 @@ export function LoginPage() {
         <h1
           className="
             self-center
-            text-center text-[#29292E] text-4xl
+            text-center text-[#F5F5F5] text-4xl
             font-extrabold mb-10
           "
         >
@@ -117,13 +114,13 @@ export function LoginPage() {
           state={{ getter: username, setter: setUsername }}
           type="text"
           labelFor="Usuário"
-          icon={<BsFillPersonFill className="text-[#A1A1AA] text-lg" />}
+          icon={<BsFillPersonFill className="text-[#F5F5F5]/50 text-lg" />}
         />
         <Input
           state={{ getter: password, setter: setPassword }}
           type="password"
           labelFor="Senha"
-          icon={<HiLockClosed className="text-[#A1A1AA] text-lg" />}
+          icon={<HiLockClosed className="text-[#F5F5F5]/50 text-lg" />}
         />
 
         <Button onClick={login} className="mt-20">

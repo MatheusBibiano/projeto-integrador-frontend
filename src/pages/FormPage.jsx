@@ -35,31 +35,31 @@ export function FormPage() {
 
   const radiosData = [
     {
-      icon: <BsEmojiAngry className="text-[#A1A1AA]" size={"48"} />,
+      icon: <BsEmojiAngry className="text-[#F5F5F5]/50" size={"48"} />,
       text: "Péssima",
       type: "veryBad",
       value: 1,
     },
     {
-      icon: <BsEmojiFrown className="text-[#A1A1AA]" size={"48"} />,
+      icon: <BsEmojiFrown className="text-[#F5F5F5]/50" size={"48"} />,
       text: "Ruim",
       type: "bad",
       value: 2,
     },
     {
-      icon: <BsEmojiNeutral className="text-[#A1A1AA]" size={"48"} />,
+      icon: <BsEmojiNeutral className="text-[#F5F5F5]/50" size={"48"} />,
       text: "Mediana",
       type: "median",
       value: 3,
     },
     {
-      icon: <BsEmojiSmile className="text-[#A1A1AA]" size={"48"} />,
+      icon: <BsEmojiSmile className="text-[#F5F5F5]/50" size={"48"} />,
       text: "Boa",
       type: "good",
       value: 4,
     },
     {
-      icon: <BsEmojiLaughing className="text-[#A1A1AA]" size={"48"} />,
+      icon: <BsEmojiLaughing className="text-[#F5F5F5]/50" size={"48"} />,
       text: "Ótima",
       type: "excellent",
       value: 5,
@@ -112,7 +112,7 @@ export function FormPage() {
         flex-1
         sm:flex-none
         flex flex-col
-        sm:bg-white
+        sm:bg-[#201f22]
         sm:rounded-lg
         sm:shadow-xl
         p-4
@@ -120,32 +120,33 @@ export function FormPage() {
     "
       >
         <header className="flex flex-col items-center mb-8">
-          <h1 className="font-bold text-3xl text-[#29292E] text-center mb-2">
+          <h1 className="font-bold text-3xl text-[#FEFEFE] text-center mb-2">
             Avalie a qualidade da aula!
           </h1>
           <div className="flex flex-col sm:flex-row items-center justify-center">
-            <span className="text-[#8A8A8A] text-xl">{urlParams.disc}</span>
+            <span className="text-[#F5F5F5]/50 text-xl">{urlParams.disc}</span>
             <hr
               className="
                 hidden
                 sm:block
                 mx-3
                 my-1
-                h-8
+                h-[2px]
+                w-2
                 border
-                border-[#9e9e9e]
-                bg-[#9e9e9e]
+                border-transparent
+                bg-[#F5F5F5]/40
               "
             />
-            <span className="text-[#8A8A8A] text-xl break-words max-w-[220px]">
+            <span className="text-[#F5F5F5]/50 text-xl break-words max-w-[220px]">
               {urlParams.tema}
             </span>
           </div>
-          <h4 className="text-[#8A8A8A] text-xl">Prof. {urlParams.prof}</h4>
+          <h4 className="text-[#F5F5F5]/50 text-xl">Prof. {urlParams.prof}</h4>
         </header>
 
         <fieldset className="flex flex-col border-none relative">
-          <span className="text-xl text-[#29292E]">
+          <span className="text-xl text-[#F5F5F5]/80">
             Como você avaliaria essa aula?
           </span>
           <div
@@ -191,19 +192,19 @@ export function FormPage() {
         </fieldset>
 
         <fieldset className="flex flex-col border-none">
-          <span className="text-xl text-[#29292E] mb-2" htmlFor="mensagem">
+          <span className="text-xl text-[#F5F5F5]/80 mb-2" htmlFor="mensagem">
             Mensagem
           </span>
           <textarea
             className="
             max-h-52
             min-h-[44px]
-            bg-[#F5F5F5]
+            bg-transparent
             border-2 border-[#996DFF]
             rounded-lg
             p-2
             mb-4
-            text-[#29292E]
+            text-[#F5F5F5]/90
             text-base
             resize-y
             outline-none

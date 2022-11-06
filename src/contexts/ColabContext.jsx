@@ -7,17 +7,17 @@ export function ColabContextProvider({ children }) {
   const [fkPerson, setFkPerson] = useState(sessionStorage.getItem("fkPessoa"));
   const [colabData, setColabData] = useState();
 
-  async function getDashboardColabData(personId) {
+  async function handleGetDashboardColabData(personId) {
     if (personId) {
       const res = await axiosAPI.get(
         `Colaborador/GetDashboardColabData/${personId}`
       );
 
-      storeDashboardColabData(res.data);
+      handleStoreDashboardColabData(res.data);
     }
   }
 
-  function storeDashboardColabData(colabData) {
+  function handleStoreDashboardColabData(colabData) {
     setColabData(colabData);
     sessionStorage.setItem("colabName", colabData.nome);
     sessionStorage.setItem("colabSobrenome", colabData.sobrenome);
@@ -30,7 +30,7 @@ export function ColabContextProvider({ children }) {
       value={{
         fkPerson,
         colabData,
-        getDashboardColabData,
+        handleGetDashboardColabData,
       }}
     >
       {children}

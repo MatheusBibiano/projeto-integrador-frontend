@@ -1,13 +1,15 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { useAxios } from "../hooks/useAxios";
 import { axiosAPI } from "../services/axios";
 
 const RatingContext = createContext();
 
 export function RatingContextProvider({ children }) {
+  const [discId, setDiscId] = useState(sessionStorage.getItem("discId"));
+
   // GET
   const { data, mutate } = useAxios(
-    `Avaliacao/Listar/${sessionStorage.getItem("discId")}`
+    `Avaliacao/Listar/${discId}`
   );
 
   // POST
