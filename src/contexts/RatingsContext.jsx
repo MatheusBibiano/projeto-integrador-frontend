@@ -5,11 +5,9 @@ import { axiosAPI } from "../services/axios";
 const RatingContext = createContext();
 
 export function RatingContextProvider({ children }) {
-  const [discId, setDiscId] = useState(sessionStorage.getItem("discId"));
-
   // GET
   const { data, mutate } = useAxios(
-    `Avaliacao/Listar/${discId}`
+    `Avaliacao/Listar/${sessionStorage.getItem("discId")}`
   );
 
   // POST

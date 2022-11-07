@@ -1,23 +1,20 @@
 import { useEffect } from "react";
-import { Rating } from "../components/Rating/Rating";
-import { Loading } from "../components/Loading/Loading";
-import { useRatings } from "../contexts/RatingsContext";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import { useColab } from "../contexts/ColabContext";
 import { Navbar } from "../components/Navbar/Navbar";
+import { Loading } from "../components/Loading/Loading";
+import { Class } from "../components/Class/Class";
+import { Button } from "../components/Button/Button";
+import { useAuth } from "../contexts/AuthContext";
+import { useClasses } from "../contexts/ClassesContext";
 
-import noRatings from "../assets/icons/noRatings.svg";
+import { MdOutlineAddBox } from "react-icons/md";
 
-export function ColabPage() {
-  const { data } = useRatings();
+import noClasses from "../assets/icons/noRatings.svg";
+
+export function ClassesPage() {
   const { isLogged, logout } = useAuth();
-  const { fkPerson, handleGetDashboardColabData } = useColab();
+  const { data } = useClasses();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    handleGetDashboardColabData(fkPerson);
-  }, []);
 
   useEffect(() => {
     if (!isLogged) {
@@ -26,8 +23,8 @@ export function ColabPage() {
     }
   }, [isLogged]);
 
-  const rows = data?.map((rating) => (
-    <Rating key={rating.idAval} data={rating} />
+  const rows = data?.map((current) => (
+    <Class key={current.idAula} data={current} />
   ));
 
   return (
@@ -63,12 +60,13 @@ export function ColabPage() {
           mb-10
         "
       >
-        <header className="flex items-center justify-start mb-5 w-full">
-          <h2 className="text-lg font-bold mr-2 text-[#F5F5F5] max-w-fit">
-            Avaliações
-          </h2>
-          <span
-            className="
+        <header className="flex items-center justify-between mb-5 w-full">
+          <div className="flex items-center">
+            <h2 className="text-lg font-bold mr-2 text-[#F5F5F5] max-w-fit">
+              Aulas
+            </h2>
+            <span
+              className="
             flex items-center justify-center
             bg-[#8257E5]
             rounded-full
@@ -78,20 +76,25 @@ export function ColabPage() {
             h-8
             max-w-fit
           "
-          >
-            {!data ? <Loading style="text-white" /> : data?.length}
-          </span>
+            >
+              {!data ? <Loading style="text-white" /> : data?.length}
+            </span>
+          </div>
+          <Button className="flex items-center gap-1 px-2 py-2 font-semibold max-w-fit">
+            Criar
+            <MdOutlineAddBox className="text-[#FEFEFE] text-2xl" />
+          </Button>
         </header>
 
         {!data?.length ? (
           <div className="flex flex-col items-center justify-center mt-[15vh]">
             <img
-              src={noRatings}
+              src={noClasses}
               alt="Balões de avaliação"
               className="w-[200px]"
             />
             <h2 className="font-semibold mt-4 text-lg text-center text-[#F5F5F5]">
-              Nenhuma avaliação encontrada
+              Nenhuma aula encontrada
             </h2>
           </div>
         ) : (

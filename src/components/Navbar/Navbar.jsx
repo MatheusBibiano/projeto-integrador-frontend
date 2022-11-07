@@ -33,7 +33,7 @@ export function Navbar() {
             <button
               className="flex flex-col items-center group hover:bg-[#FEFEFE]/10 rounded-xl py-2 w-24"
               onClick={() => {
-                navigate("/dashboard");
+                navigate("/avaliacoes");
               }}
             >
               <TbStars className="text-3xl text-[#FEFEFE]/80 group-hover:text-[#FFC300]" />
@@ -46,7 +46,7 @@ export function Navbar() {
             <button
               className="flex flex-col items-center group hover:bg-[#FEFEFE]/10 rounded-xl py-2 w-24"
               onClick={() => {
-                navigate("/classes");
+                navigate("/aulas");
               }}
             >
               <SiGoogleclassroom className="text-3xl text-[#FEFEFE]/80 group-hover:text-[#44a85d]" />

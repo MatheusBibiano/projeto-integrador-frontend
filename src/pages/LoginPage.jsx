@@ -41,7 +41,7 @@ export function LoginPage() {
             navigate("/");
             break;
           case "1":
-            navigate("/dashboard");
+            navigate("/avaliacoes");
             break;
         }
       }
