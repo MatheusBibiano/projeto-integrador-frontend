@@ -123,7 +123,7 @@ export function LoginPage() {
           icon={<HiLockClosed className="text-[#F5F5F5]/50 text-lg" />}
         />
 
-        <Button onClick={login} className="mt-20">
+        <Button type="submit" onClick={login} className="mt-20">
           Entrar
         </Button>
       </form>

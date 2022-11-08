@@ -80,7 +80,12 @@ export function ClassesPage() {
               {!data ? <Loading style="text-white" /> : data?.length}
             </span>
           </div>
-          <Button className="flex items-center gap-1 px-2 py-2 font-semibold max-w-fit">
+          <Button
+            className="flex items-center gap-1 px-2 py-2 font-semibold max-w-fit"
+            onClick={() => {
+              navigate("/adicionar-aula");
+            }}
+          >
             Criar
             <MdOutlineAddBox className="text-[#FEFEFE] text-2xl" />
           </Button>

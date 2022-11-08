@@ -10,6 +10,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { ColabPage } from "./pages/ColabPage";
 import { FormPage } from "./pages/FormPage";
 import { ClassesPage } from "./pages/ClassesPage";
+import { AddClassPage } from "./pages/AddClassPage";
 
 export function Router() {
   return (
@@ -50,6 +51,16 @@ export function Router() {
             <AuthContextProvider>
               <ClassesContextProvider>
                 <ClassesPage />
+              </ClassesContextProvider>
+            </AuthContextProvider>
+          }
+        />
+        <Route
+          path="/adicionar-aula"
+          element={
+            <AuthContextProvider>
+              <ClassesContextProvider>
+                <AddClassPage />
               </ClassesContextProvider>
             </AuthContextProvider>
           }

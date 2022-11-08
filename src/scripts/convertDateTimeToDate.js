@@ -1,14 +1,14 @@
-export function dateTimeToDate(date) {
-  var date = new Date(date);
+export function dateTimeToDate(dateTime) {
+  var dateTime = new Date(dateTime);
 
-  var twoDigitMonth = date.getMonth() + "";
+  var twoDigitMonth = dateTime.getMonth() + "";
   if (twoDigitMonth.length == 1) twoDigitMonth = "0" + twoDigitMonth;
 
-  var twoDigitDate = date.getDate() + "";
+  var twoDigitDate = dateTime.getDate() + "";
   if (twoDigitDate.length == 1) twoDigitDate = "0" + twoDigitDate;
 
   var dateFormated =
-    twoDigitDate + "/" + twoDigitMonth + "/" + date.getFullYear();
+    twoDigitDate + "/" + twoDigitMonth + "/" + dateTime.getFullYear();
 
   return dateFormated;
 }

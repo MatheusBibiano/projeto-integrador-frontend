@@ -1,4 +1,4 @@
-export function Button({ children, onClick, className }) {
+export function Button({ children, type = "button", onClick, className }) {
   return (
     <button
       className={`
@@ -19,8 +19,11 @@ export function Button({ children, onClick, className }) {
         md:active:bg-[#8257E5]
         md:active:scale-100
       `}
-      onClick={onClick}
-      type="button"
+      onClick={(event) => {
+        event.preventDefault();
+        onClick();
+      }}
+      type={type}
     >
       {children}
     </button>
