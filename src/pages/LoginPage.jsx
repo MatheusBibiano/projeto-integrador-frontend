@@ -134,7 +134,7 @@ export function LoginPage() {
           alt="Ilustração de alunos"
           className="self-center h-[80%]"
         />
-        <p className="self-end text-right text-2xl max-w-[500px] text-white font-semibold">
+        <p className="self-end text-right text-2xl max-w-[500px] text-[#FEFEFE] font-semibold border-r-4 border-[#FEFEFE] pr-4">
           Ajude a construir um ambiente de ensino cada vez melhor
         </p>
       </aside>

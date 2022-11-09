@@ -6,6 +6,7 @@ import { Class } from "../components/Class/Class";
 import { Button } from "../components/Button/Button";
 import { useAuth } from "../contexts/AuthContext";
 import { useClasses } from "../contexts/ClassesContext";
+import { ColabHeader } from "../components/ColabHeader/ColabHeader";
 
 import { MdOutlineAddBox } from "react-icons/md";
 
@@ -35,21 +36,7 @@ export function ClassesPage() {
         mt-[100px]
       "
     >
-      <header
-        className="
-          fixed top-0 z-50
-          flex justify-center items-center
-          py-4
-          bg-[#201f22]/80
-          border-b-2 border-[#151416]/30
-          w-full
-          backdrop-blur-md
-        "
-      >
-        <h1 className="text-3xl md:text-5xl font-extrabold text-[#FEFEFE] max-w-fit">
-          {sessionStorage.getItem("discNome")}
-        </h1>
-      </header>
+     <ColabHeader />
 
       <article
         className="

@@ -1,5 +1,6 @@
 import { RatingTag } from "../RatingTag/RatingTag";
 import { useRatings } from "../../contexts/RatingsContext";
+import { useNavigate } from "react-router-dom";
 import { convertQuality } from "../../scripts/convertQuality";
 
 import { BiTrashAlt, BiChat } from "react-icons/bi";
@@ -7,6 +8,7 @@ import { BiTrashAlt, BiChat } from "react-icons/bi";
 export function Rating({ data }) {
   const [content, type] = convertQuality(data.qualidade);
   const { handleRemoveRating } = useRatings();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -57,6 +59,9 @@ export function Rating({ data }) {
           <button
             title="Responder"
             className="outline-[#996DFF] p-2 hover:bg-[#FEFEFE]/10 rounded-md group min-w-fit"
+            onClick={() => {
+              navigate("/avaliacao", { state: data });
+            }}
           >
             <BiChat
               className="
@@ -70,7 +75,7 @@ export function Rating({ data }) {
             className="outline-[#996DFF] p-2 hover:bg-[#FEFEFE]/10 rounded-md group min-w-fit"
             title="Excluir"
             onClick={() => {
-              handleRemoveRating(data);
+              handleRemoveRating(data.idAval);
             }}
           >
             <BiTrashAlt

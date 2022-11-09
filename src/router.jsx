@@ -11,6 +11,7 @@ import { ColabPage } from "./pages/ColabPage";
 import { FormPage } from "./pages/FormPage";
 import { ClassesPage } from "./pages/ClassesPage";
 import { AddClassPage } from "./pages/AddClassPage";
+import { RatingPage } from "./pages/RatingPage";
 
 export function Router() {
   return (
@@ -38,7 +39,7 @@ export function Router() {
           }
         />
         <Route
-          path="/avaliacao"
+          path="/avaliar-aula"
           element={
             <RatingContextProvider>
               <FormPage />
@@ -62,6 +63,14 @@ export function Router() {
               <ClassesContextProvider>
                 <AddClassPage />
               </ClassesContextProvider>
+            </AuthContextProvider>
+          }
+        />
+        <Route
+          path="/avaliacao"
+          element={
+            <AuthContextProvider>
+             <RatingPage />
             </AuthContextProvider>
           }
         />

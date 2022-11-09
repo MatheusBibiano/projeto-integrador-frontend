@@ -17,11 +17,9 @@ export function RatingContextProvider({ children }) {
   }
 
   // DELETE
-  function handleRemoveRating(rating) {
-    axiosAPI.delete("/Excluir", { data: rating });
-    const updateRatings = data?.filter(
-      (current) => current.idAval !== rating.idAval
-    );
+  function handleRemoveRating(id) {
+    axiosAPI.delete(`Avaliacao/Excluir/${id}`);
+    const updateRatings = data?.filter((current) => current.idAval !== id);
     mutate(updateRatings, false);
   }
 
