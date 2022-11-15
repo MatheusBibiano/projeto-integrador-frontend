@@ -38,7 +38,7 @@ export function Rating({ data }) {
         `}
       >
         <h2 className="font-semibold text-base truncate text-[#FEFEFE]">
-          Introdução a jQuery
+          {data.tema}
         </h2>
       </header>
 
@@ -58,7 +58,7 @@ export function Rating({ data }) {
         <div className="flex justify-end gap-2 w-full max-w-fit ml-4">
           <button
             title="Responder"
-            className="outline-[#996DFF] p-2 hover:bg-[#FEFEFE]/10 rounded-md group min-w-fit"
+            className="outline-[#996DFF] p-2 active:bg-[#FEFEFE]/10 md:hover:bg-[#FEFEFE]/10 rounded-md group min-w-fit"
             onClick={() => {
               navigate("/avaliacao", { state: data });
             }}
@@ -66,13 +66,14 @@ export function Rating({ data }) {
             <BiChat
               className="
               text-[#FEFEFE]/50
-              group-hover:text-[#996DFF]
+              active:text-[#996DFF]
+              md:group-hover:text-[#996DFF]
             "
               size={24}
             />
           </button>
           <button
-            className="outline-[#996DFF] p-2 hover:bg-[#FEFEFE]/10 rounded-md group min-w-fit"
+            className="outline-[#996DFF] p-2 active:bg-[#FEFEFE]/10 md:hover:bg-[#FEFEFE]/10 rounded-md group min-w-fit"
             title="Excluir"
             onClick={() => {
               handleRemoveRating(data.idAval);
@@ -81,6 +82,7 @@ export function Rating({ data }) {
             <BiTrashAlt
               className="
               text-[#FEFEFE]/50
+              active:text-[#fa5268]
               group-hover:text-[#fa5268]
             "
               size={24}

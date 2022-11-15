@@ -15,8 +15,20 @@ export function ClassesContextProvider({ children }) {
     mutate([...data, newClass], false);
   }
 
+  // PUT
+  function handleEditClass(editedClass) {
+    axiosAPI.put("/Aula/EditarAula", editedClass);
+
+    const index = data.findIndex(
+      (current) => current.idAula === editedClass.idAula
+    );
+
+    data.splice(index, 1, editedClass);
+    mutate(data, false);
+  }
+
   return (
-    <ClassesContext.Provider value={{ data, handleAddClass }}>
+    <ClassesContext.Provider value={{ data, handleAddClass, handleEditClass }}>
       {children}
     </ClassesContext.Provider>
   );

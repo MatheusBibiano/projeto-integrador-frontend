@@ -11,7 +11,7 @@ export function ColabHeader() {
           backdrop-blur-md
         "
     >
-      <h1 className="text-3xl md:text-5xl font-extrabold text-[#FEFEFE] max-w-fit">
+      <h1 className="text-3xl md:text-5xl text-[#FEFEFE] max-w-fit">
         {sessionStorage.getItem("discNome")}
       </h1>
     </header>

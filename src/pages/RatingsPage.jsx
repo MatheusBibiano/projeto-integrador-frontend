@@ -10,7 +10,7 @@ import { ColabHeader } from "../components/ColabHeader/ColabHeader";
 
 import noRatings from "../assets/icons/noRatings.svg";
 
-export function ColabPage() {
+export function RatingsPage() {
   const { data } = useRatings();
   const { isLogged, logout } = useAuth();
   const { fkPerson, handleGetDashboardColabData } = useColab();
@@ -51,7 +51,7 @@ export function ColabPage() {
         "
       >
         <header className="flex items-center justify-start mb-5 w-full">
-          <h2 className="text-lg font-bold mr-2 text-[#F5F5F5] max-w-fit">
+          <h2 className="text-lg mr-2 text-[#F5F5F5] max-w-fit">
             Avaliações
           </h2>
           <span
@@ -77,7 +77,7 @@ export function ColabPage() {
               alt="Balões de avaliação"
               className="w-[200px]"
             />
-            <h2 className="font-semibold mt-4 text-lg text-center text-[#F5F5F5]">
+            <h2 className="mt-4 text-lg text-center text-[#F5F5F5]">
               Nenhuma avaliação encontrada
             </h2>
           </div>

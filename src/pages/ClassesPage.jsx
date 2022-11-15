@@ -8,8 +8,6 @@ import { useAuth } from "../contexts/AuthContext";
 import { useClasses } from "../contexts/ClassesContext";
 import { ColabHeader } from "../components/ColabHeader/ColabHeader";
 
-import { MdOutlineAddBox } from "react-icons/md";
-
 import noClasses from "../assets/icons/noRatings.svg";
 
 export function ClassesPage() {
@@ -49,7 +47,7 @@ export function ClassesPage() {
       >
         <header className="flex items-center justify-between mb-5 w-full">
           <div className="flex items-center">
-            <h2 className="text-lg font-bold mr-2 text-[#F5F5F5] max-w-fit">
+            <h2 className="text-lg mr-2 text-[#F5F5F5] max-w-fit">
               Aulas
             </h2>
             <span
@@ -68,13 +66,12 @@ export function ClassesPage() {
             </span>
           </div>
           <Button
-            className="flex items-center gap-1 px-2 py-2 font-semibold max-w-fit"
+            className="flex items-center gap-1 px-3 py-[6px] max-w-fit"
             onClick={() => {
               navigate("/adicionar-aula");
             }}
           >
             Criar
-            <MdOutlineAddBox className="text-[#FEFEFE] text-2xl" />
           </Button>
         </header>
 
@@ -85,7 +82,7 @@ export function ClassesPage() {
               alt="Balões de avaliação"
               className="w-[200px]"
             />
-            <h2 className="font-semibold mt-4 text-lg text-center text-[#F5F5F5]">
+            <h2 className="mt-4 text-lg text-center text-[#F5F5F5]">
               Nenhuma aula encontrada
             </h2>
           </div>

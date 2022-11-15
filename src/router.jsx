@@ -7,11 +7,13 @@ import { ClassesContextProvider } from "./contexts/ClassesContext";
 
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { LoginPage } from "./pages/LoginPage";
-import { ColabPage } from "./pages/ColabPage";
+import { RatingsPage } from "./pages/RatingsPage";
 import { FormPage } from "./pages/FormPage";
 import { ClassesPage } from "./pages/ClassesPage";
 import { AddClassPage } from "./pages/AddClassPage";
 import { RatingPage } from "./pages/RatingPage";
+import { ClassPage } from "./pages/ClassPage";
+import { EditClassPage } from "./pages/EditClassPage";
 
 export function Router() {
   return (
@@ -32,7 +34,7 @@ export function Router() {
             <AuthContextProvider>
               <ColabContextProvider>
                 <RatingContextProvider>
-                  <ColabPage />
+                  <RatingsPage />
                 </RatingContextProvider>
               </ColabContextProvider>
             </AuthContextProvider>
@@ -70,7 +72,25 @@ export function Router() {
           path="/avaliacao"
           element={
             <AuthContextProvider>
-             <RatingPage />
+              <RatingPage />
+            </AuthContextProvider>
+          }
+        />
+        <Route
+          path="/aula"
+          element={
+            <AuthContextProvider>
+              <ClassPage />
+            </AuthContextProvider>
+          }
+        />
+        <Route
+          path="/editar-aula"
+          element={
+            <AuthContextProvider>
+              <ClassesContextProvider>
+                <EditClassPage />
+              </ClassesContextProvider>
             </AuthContextProvider>
           }
         />
