@@ -26,10 +26,10 @@ export function FormPage() {
 
   useEffect(() => {
     if (
-      Object.keys(urlParams).length < 3 ||
-      Object.keys(urlParams).length > 3
+      Object.keys(urlParams).length < 5 ||
+      Object.keys(urlParams).length > 5
     ) {
-      navigate("/");
+      navigate("/login");
     }
   }, []);
 
@@ -83,12 +83,13 @@ export function FormPage() {
   function sendRating() {
     if (radioValue) {
       const newRating = {
-        DataPostagem: getDateNow(),
-        Mensagem: textareaValue,
-        Qualidade: radioValue,
-        FkAula: 1,
-        FkAluno: 1,
+        dataPostagem: getDateNow(),
+        mensagem: textareaValue ? textareaValue : null,
+        qualidade: radioValue,
+        fkAula: urlParams.idAula,
+        fkAluno: 10,
       };
+      console.log(newRating);
 
       handleAddRating(newRating);
       setIsSent(true);

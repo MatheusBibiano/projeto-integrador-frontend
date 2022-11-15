@@ -5,7 +5,7 @@ import { HiOutlineCalendar } from "react-icons/hi";
 import { BiShareAlt, BiEditAlt } from "react-icons/bi";
 import { IoLogInOutline } from "react-icons/io5";
 
-export function Class({ data }) {
+export function Class({ data, discId }) {
   const navigate = useNavigate();
 
   return (
@@ -46,7 +46,7 @@ export function Class({ data }) {
               "colabName"
             )} ${sessionStorage.getItem("colabSobrenome")}`;
             const disciplina = sessionStorage.getItem("discNome");
-            const formURL = `http://localhost:3000/avaliar-aula?tema=${data.tema}&prof=${professor}&disc=${disciplina}`;
+            const formURL = `http://localhost:3000/avaliar-aula?tema=${data.tema}&prof=${professor}&discId=${discId}&disc=${disciplina}&idAula=${data.idAula}`;
 
             navigator.clipboard.writeText(formURL);
           }}

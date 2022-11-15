@@ -23,7 +23,11 @@ export function ClassesPage() {
   }, [isLogged]);
 
   const rows = data?.map((current) => (
-    <Class key={current.idAula} data={current} />
+    <Class
+      key={current.idAula}
+      data={current}
+      discId={sessionStorage.getItem("discId")}
+    />
   ));
 
   return (
@@ -34,7 +38,7 @@ export function ClassesPage() {
         mt-[100px]
       "
     >
-     <ColabHeader />
+      <ColabHeader />
 
       <article
         className="
@@ -47,9 +51,7 @@ export function ClassesPage() {
       >
         <header className="flex items-center justify-between mb-5 w-full">
           <div className="flex items-center">
-            <h2 className="text-lg mr-2 text-[#F5F5F5] max-w-fit">
-              Aulas
-            </h2>
+            <h2 className="text-lg mr-2 text-[#F5F5F5] max-w-fit">Aulas</h2>
             <span
               className="
             flex items-center justify-center

@@ -13,7 +13,7 @@ export function RatingContextProvider({ children }) {
   // POST
   function handleAddRating(newRating) {
     axiosAPI.post("Avaliacao/NovaAvaliacao", newRating);
-    mutate([...data, newRating], false);
+    // mutate([...data, newRating], false);
   }
 
   // DELETE
