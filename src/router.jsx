@@ -32,11 +32,13 @@ export function Router() {
           path="/avaliacoes"
           element={
             <AuthContextProvider>
-              <ColabContextProvider>
-                <RatingContextProvider>
-                  <RatingsPage />
-                </RatingContextProvider>
-              </ColabContextProvider>
+              <ClassesContextProvider>
+                <ColabContextProvider>
+                  <RatingContextProvider>
+                    <RatingsPage />
+                  </RatingContextProvider>
+                </ColabContextProvider>
+              </ClassesContextProvider>
             </AuthContextProvider>
           }
         />

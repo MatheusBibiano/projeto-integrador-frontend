@@ -5,9 +5,13 @@ import { axiosAPI } from "../services/axios";
 const RatingContext = createContext();
 
 export function RatingContextProvider({ children }) {
+  const [filterByClass, setFilterByClass] = useState();
+
   // GET
   const { data, mutate } = useAxios(
-    `Avaliacao/Listar/${sessionStorage.getItem("discId")}`
+    parseInt(filterByClass)
+      ? `Avaliacao/ListarPorAula?fkAula=${filterByClass}`
+      : `Avaliacao/Listar?fkDisc=${sessionStorage.getItem("discId")}`
   );
 
   // POST
@@ -18,7 +22,7 @@ export function RatingContextProvider({ children }) {
 
   // DELETE
   function handleRemoveRating(id) {
-    axiosAPI.delete(`Avaliacao/Excluir/${id}`);
+    axiosAPI.delete(`Avaliacao/Excluir?id=${id}`);
     const updateRatings = data?.filter((current) => current.idAval !== id);
     mutate(updateRatings, false);
   }
@@ -27,6 +31,7 @@ export function RatingContextProvider({ children }) {
     <RatingContext.Provider
       value={{
         data,
+        setFilterByClass,
         handleAddRating,
         handleRemoveRating,
       }}

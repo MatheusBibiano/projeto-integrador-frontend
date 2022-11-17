@@ -89,7 +89,6 @@ export function FormPage() {
         fkAula: urlParams.idAula,
         fkAluno: 10,
       };
-      console.log(newRating);
 
       handleAddRating(newRating);
       setIsSent(true);

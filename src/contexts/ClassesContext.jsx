@@ -5,10 +5,11 @@ import { axiosAPI } from "../services/axios";
 const ClassesContext = createContext();
 
 export function ClassesContextProvider({ children }) {
+  // GET
   const { data, mutate } = useAxios(
-    `Aula/Listar/${sessionStorage.getItem("discId")}`
+    `Aula/Listar?fkDisc=${sessionStorage.getItem("discId")}`
   );
-
+  
   // POST
   function handleAddClass(newClass) {
     axiosAPI.post("/Aula/NovaAula", newClass);

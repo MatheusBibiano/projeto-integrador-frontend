@@ -5,8 +5,10 @@ import { useRatings } from "../contexts/RatingsContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useColab } from "../contexts/ColabContext";
+import { useClasses } from "../contexts/ClassesContext";
 import { Navbar } from "../components/Navbar/Navbar";
 import { ColabHeader } from "../components/ColabHeader/ColabHeader";
+import { Filter } from "../components/Filter/Filter";
 
 import noRatings from "../assets/icons/noRatings.svg";
 
@@ -14,6 +16,7 @@ export function RatingsPage() {
   const { data } = useRatings();
   const { isLogged, logout } = useAuth();
   const { fkPerson, handleGetDashboardColabData } = useColab();
+  const classes = useClasses();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +29,13 @@ export function RatingsPage() {
       navigate("/login");
     }
   }, [isLogged]);
+
+  const options = classes.data?.map((current) => {
+    return {
+      idAula: current.idAula,
+      tema: current.tema,
+    };
+  });
 
   const rows = data?.map((rating) => (
     <Rating key={rating.idAval} data={rating} />
@@ -51,9 +61,7 @@ export function RatingsPage() {
         "
       >
         <header className="flex items-center justify-start mb-5 w-full">
-          <h2 className="text-lg mr-2 text-[#F5F5F5] max-w-fit">
-            Avaliações
-          </h2>
+          <h2 className="text-lg mr-2 text-[#F5F5F5] max-w-fit">Avaliações</h2>
           <span
             className="
             flex items-center justify-center
@@ -68,6 +76,9 @@ export function RatingsPage() {
           >
             {!data ? <Loading style="text-white" /> : data?.length}
           </span>
+          <div className="flex flex-1 gap-2 items-center justify-end">
+            <Filter list={options} />
+          </div>
         </header>
 
         {!data?.length ? (
