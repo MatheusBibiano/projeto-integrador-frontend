@@ -2,6 +2,7 @@ export function Button({ children, type = "button", onClick, className }) {
   return (
     <button
       className={`
+        flex items-center justify-center gap-2
         w-full
         bg-[#8257E5]
         text-white

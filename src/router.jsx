@@ -13,7 +13,6 @@ import { ClassesPage } from "./pages/ClassesPage";
 import { AddClassPage } from "./pages/AddClassPage";
 import { RatingPage } from "./pages/RatingPage";
 import { ClassPage } from "./pages/ClassPage";
-import { EditClassPage } from "./pages/EditClassPage";
 
 export function Router() {
   return (
@@ -82,7 +81,9 @@ export function Router() {
           path="/aula"
           element={
             <AuthContextProvider>
-              <ClassPage />
+              <ClassesContextProvider>
+                <ClassPage type="view" />
+              </ClassesContextProvider>
             </AuthContextProvider>
           }
         />
@@ -91,7 +92,7 @@ export function Router() {
           element={
             <AuthContextProvider>
               <ClassesContextProvider>
-                <EditClassPage />
+                <ClassPage type="edit" />
               </ClassesContextProvider>
             </AuthContextProvider>
           }

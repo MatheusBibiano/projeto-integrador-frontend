@@ -2,7 +2,7 @@ import { removeAccents } from "../../scripts/removeAccents";
 
 import styles from "./Input.module.css";
 
-export function Input({ type, labelFor, icon, state }) {
+export function Input({ type, labelFor, icon, state, disabled }) {
   return (
     <fieldset className="flex flex-col mb-8 min-w-[240px]">
       <label
@@ -44,6 +44,7 @@ export function Input({ type, labelFor, icon, state }) {
           }}
           autoComplete="off"
           maxLength={32}
+          disabled={disabled}
         />
         {type !== "date" && (
           <div className="flex items-center justify-center p-3 max-w-fit">
