@@ -5,7 +5,7 @@ import { Button } from "../components/Button/Button";
 import { useRatings } from "../contexts/RatingsContext";
 import { FaceInput } from "../components/FaceInput/FaceInput";
 import { getCurrentURLParams } from "../scripts/getCurrentURLParams";
-import { Snack } from "../components/Snack/Snack";
+
 import {
   BsEmojiAngry,
   BsEmojiFrown,
@@ -227,14 +227,14 @@ export function FormPage() {
           Enviar
         </Button>
 
-        {isSent && (
+        {/* {isSent && (
           <Snack
             title="Obrigado pelo feedback!"
             message="Seu feedback foi enviado com sucesso."
             type="success"
             pos="top-right"
           />
-        )}
+        )} */}
       </form>
     </div>
   );

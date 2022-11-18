@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../components/Input/Input";
 import { Button } from "../components/Button/Button";
 import { useAuth } from "../contexts/AuthContext";
+import { Toastr } from "../components/Toastr/Toastr";
 
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
@@ -15,6 +16,8 @@ export function LoginPage() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [incorretCredentials, setIncorretCredentials] = useState();
+  const [emptyFields, setEmptyFields] = useState();
 
   useEffect(() => {
     logout();
@@ -44,7 +47,11 @@ export function LoginPage() {
             navigate("/avaliacoes");
             break;
         }
+      } else {
+        setIncorretCredentials(true);
       }
+    } else {
+      setEmptyFields(true);
     }
   }
 
@@ -138,6 +145,24 @@ export function LoginPage() {
           Ajude a construir um ambiente de ensino cada vez melhor
         </p>
       </aside>
+
+      {incorretCredentials && (
+        <Toastr
+          title="Atenção!"
+          message="Usuário ou senha incorretos."
+          type="warning"
+          stateSetter={setIncorretCredentials}
+        />
+      )}
+
+      {emptyFields && (
+        <Toastr
+          title="Atenção!"
+          message="Preencha todos os campos corretamente."
+          type="warning"
+          stateSetter={setEmptyFields}
+        />
+      )}
     </div>
   );
 }
