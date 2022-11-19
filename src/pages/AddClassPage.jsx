@@ -42,6 +42,7 @@ export function AddClassPage() {
   return (
     <div className="flex flex-col w-full h-full mt-[100px]">
       <ColabHeader
+        discName={sessionStorage.getItem("discNome")}
         personName={`${sessionStorage.getItem(
           "colabName"
         )} ${sessionStorage.getItem("colabSobrenome")}`}
