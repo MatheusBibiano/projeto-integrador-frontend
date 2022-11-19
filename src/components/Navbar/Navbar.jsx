@@ -115,7 +115,7 @@ export function Navbar() {
                 className="
                   text-3xl 
                   text-[#FEFEFE]/80 
-                  group-active:text-[#fa5268] 
+                  group-hover:text-[#fa5268] 
                   ml-2
                 "
               />
@@ -123,7 +123,7 @@ export function Navbar() {
                 className="
                   text-sm 
                   text-[#FEFEFE]/80 
-                  group-active:text-[#F6DBDB]
+                  group-hover:text-[#F6DBDB]
                 "
               >
                 Sair

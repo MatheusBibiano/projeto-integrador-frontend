@@ -50,7 +50,13 @@ export function ClassPage({ type }) {
 
   return (
     <div className="flex flex-col w-full h-full mt-[100px]">
-      <ColabHeader />
+      <ColabHeader
+        discName={sessionStorage.getItem("discNome")}
+        personName={`${sessionStorage.getItem(
+          "colabName"
+        )} ${sessionStorage.getItem("colabSobrenome")}`}
+        hasBackButton={true}
+      />
 
       <form className="flex flex-col gap-10 w-full h-full px-10 pt-8 max-w-xl self-center">
         <header className="flex flex-col items-center gap-1">

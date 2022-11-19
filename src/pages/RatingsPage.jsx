@@ -49,7 +49,12 @@ export function RatingsPage() {
         mt-[100px]
       "
     >
-      <ColabHeader />
+      <ColabHeader
+        discName={sessionStorage.getItem("discNome")}
+        personName={`${sessionStorage.getItem(
+          "colabName"
+        )} ${sessionStorage.getItem("colabSobrenome")}`}
+      />
 
       <article
         className="

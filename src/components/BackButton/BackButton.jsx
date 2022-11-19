@@ -16,7 +16,7 @@ export function BackButton() {
             md:hover:bg-[#FEFEFE]/10
             rounded-lg
             group
-            fixed left-5 bottom-5 md:top-[18px]
+            fixed left-5 bottom-5 md:top-4 md:left-10
             z-50
         "
       onClick={() => {

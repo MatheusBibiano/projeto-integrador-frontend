@@ -22,7 +22,13 @@ export function RatingPage() {
 
   return (
     <div className="flex flex-col w-full h-full mt-[100px]">
-      <ColabHeader />
+      <ColabHeader
+        discName={sessionStorage.getItem("discNome")}
+        personName={`${sessionStorage.getItem(
+          "colabName"
+        )} ${sessionStorage.getItem("colabSobrenome")}`}
+        hasBackButton={true}
+      />
 
       <ul className="flex flex-col gap-4">
         <li className="text-[#FEFEFE]">{state.tema}</li>
