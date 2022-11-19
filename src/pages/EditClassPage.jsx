@@ -6,6 +6,7 @@ import { Input } from "../components/Input/Input";
 import { Button } from "../components/Button/Button";
 import { BackButton } from "../components/BackButton/BackButton";
 import { ColabHeader } from "../components/ColabHeader/ColabHeader";
+import { Toastr } from "../components/Toastr/Toastr";
 
 export function EditClassPage() {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ export function EditClassPage() {
   const { handleEditClass } = useClasses();
   const [theme, setTheme] = useState(state.tema);
   const [date, setDate] = useState(state.dataMinistrada.split("T")[0]);
+  const [isEdited, setIsEdited] = useState(false);
+  const [isEmptyFields, setIsEmptyFields] = useState(false);
 
   useEffect(() => {
     if (!isLogged) {
@@ -25,7 +28,13 @@ export function EditClassPage() {
   function isFormDataValid() {
     setTheme(theme.trim());
     setDate(date.trim());
-    return theme && date;
+
+    if (theme && date) {
+      setIsEdited(true);
+      return true;
+    }
+
+    return false;
   }
 
   function saveChanges() {
@@ -38,7 +47,10 @@ export function EditClassPage() {
       };
 
       handleEditClass(editedClass);
+      return;
     }
+
+    setIsEmptyFields(true);
   }
 
   return (
@@ -73,10 +85,25 @@ export function EditClassPage() {
           />
         </div>
 
-        <Button type="submit" onClick={saveChanges}>
+        <Button type="button" onClick={saveChanges}>
           Salvar alterações
         </Button>
       </form>
+
+      {isEdited && (
+        <Toastr
+          title="Editado com sucesso!"
+          stateSetter={{ getter: isEdited, setter: setIsEdited }}
+        />
+      )}
+      {isEmptyFields && (
+        <Toastr
+          title="Atenção!"
+          message="Preencha todos os campos corretamente."
+          type="warning"
+          stateSetter={{ getter: isEmptyFields, setter: setIsEmptyFields }}
+        />
+      )}
 
       <BackButton />
     </div>

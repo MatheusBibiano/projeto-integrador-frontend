@@ -112,7 +112,7 @@ export function Toastr({
         <span className="text-lg text-[#201f22] font-medium text-left">
           {title}
         </span>
-        <p className="text-[#201f22] text-left">{message}</p>
+        {message && <p className="text-[#201f22] text-left">{message}</p>}
       </div>
     </button>
   );

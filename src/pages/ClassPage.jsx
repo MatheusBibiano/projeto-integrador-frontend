@@ -7,6 +7,7 @@ import { Button } from "../components/Button/Button";
 import { BackButton } from "../components/BackButton/BackButton";
 import { ColabHeader } from "../components/ColabHeader/ColabHeader";
 import { formatDate } from "../scripts/formatDate";
+import { Toastr } from "../components/Toastr/Toastr";
 
 import { BiEditAlt } from "react-icons/bi";
 import { FiCopy } from "react-icons/fi";
@@ -21,6 +22,8 @@ export function ClassPage({ type }) {
   const [formatedDate, setFormatedDate] = useState(
     formatDate(state.dataMinistrada)
   );
+  const [isEdited, setIsEdited] = useState(false);
+  const [isEmptyFields, setIsEmptyFields] = useState(false);
 
   useEffect(() => {
     if (!isLogged) {
@@ -32,7 +35,13 @@ export function ClassPage({ type }) {
   function isFormDataValid() {
     setTheme(theme.trim());
     setDate(date.trim());
-    return theme && date;
+
+    if (theme && date) {
+      setIsEdited(true);
+      return true;
+    }
+
+    return false;
   }
 
   function saveChanges() {
@@ -45,7 +54,10 @@ export function ClassPage({ type }) {
       };
 
       handleEditClass(editedClass);
+      return;
     }
+
+    setIsEmptyFields(true);
   }
 
   return (
@@ -127,6 +139,18 @@ export function ClassPage({ type }) {
           </div>
         )}
       </form>
+
+      {isEdited && (
+        <Toastr title="Editado com sucesso!" stateSetter={setIsEdited} />
+      )}
+      {isEmptyFields && (
+        <Toastr
+          title="Atenção!"
+          message="Preencha todos os campos corretamente."
+          type="warning"
+          stateSetter={setIsEmptyFields}
+        />
+      )}
 
       <BackButton />
     </div>
