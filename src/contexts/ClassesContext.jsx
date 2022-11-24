@@ -9,7 +9,7 @@ export function ClassesContextProvider({ children }) {
   const { data, mutate } = useAxios(
     `Aula/Listar?fkDisc=${sessionStorage.getItem("discId")}`
   );
-  
+
   // POST
   function handleAddClass(newClass) {
     axiosAPI.post("/Aula/NovaAula", newClass);

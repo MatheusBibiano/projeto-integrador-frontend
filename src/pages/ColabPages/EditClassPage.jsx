@@ -21,7 +21,7 @@ export function EditClassPage() {
   useEffect(() => {
     if (!isLogged) {
       logout();
-      navigate("/login");
+      navigate("/");
     }
   }, [isLogged]);
 
@@ -91,17 +91,15 @@ export function EditClassPage() {
       </form>
 
       {isEdited && (
-        <Toastr
-          title="Editado com sucesso!"
-          stateSetter={{ getter: isEdited, setter: setIsEdited }}
-        />
+        <Toastr title="Editado com sucesso!" stateSetter={setIsEdited} />
       )}
+
       {isEmptyFields && (
         <Toastr
           title="Atenção!"
           message="Preencha todos os campos corretamente."
           type="warning"
-          stateSetter={{ getter: isEmptyFields, setter: setIsEmptyFields }}
+          stateSetter={setIsEmptyFields}
         />
       )}
 

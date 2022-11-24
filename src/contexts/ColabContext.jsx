@@ -4,20 +4,19 @@ import { axiosAPI } from "../services/axios";
 const ColabContext = createContext();
 
 export function ColabContextProvider({ children }) {
-  const [fkPerson, setFkPerson] = useState(sessionStorage.getItem("fkPessoa"));
   const [colabData, setColabData] = useState();
 
-  async function handleGetDashboardColabData(personId) {
+  async function handleGetColab(personId) {
     if (personId) {
       const res = await axiosAPI.get(
-        `Colaborador/GetDashboardColabData/${personId}`
+        `Colaborador/GetDashboardColabData?idPessoa=${personId}`
       );
 
-      handleStoreDashboardColabData(res.data);
+      handleStoreColab(res.data);
     }
   }
 
-  function handleStoreDashboardColabData(colabData) {
+  function handleStoreColab(colabData) {
     setColabData(colabData);
     sessionStorage.setItem("colabName", colabData.nome);
     sessionStorage.setItem("colabSobrenome", colabData.sobrenome);
@@ -28,9 +27,8 @@ export function ColabContextProvider({ children }) {
   return (
     <ColabContext.Provider
       value={{
-        fkPerson,
         colabData,
-        handleGetDashboardColabData,
+        handleGetColab,
       }}
     >
       {children}

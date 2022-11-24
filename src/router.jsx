@@ -7,12 +7,14 @@ import { ClassesContextProvider } from "./contexts/ClassesContext";
 
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { LoginPage } from "./pages/LoginPage";
-import { RatingsPage } from "./pages/RatingsPage";
+import { RatingsPage } from "./pages/ColabPages/RatingsPage";
 import { FormPage } from "./pages/FormPage";
-import { ClassesPage } from "./pages/ClassesPage";
-import { AddClassPage } from "./pages/AddClassPage";
-import { RatingPage } from "./pages/RatingPage";
-import { ClassPage } from "./pages/ClassPage";
+import { ClassesPage } from "./pages/ColabPages/ClassesPage";
+import { AddClassPage } from "./pages/ColabPages/AddClassPage";
+import { RatingPage } from "./pages/ColabPages/RatingPage";
+import { ClassPage } from "./pages/ColabPages/ClassPage";
+import { ClassesAvailable } from "./pages/StudentPages/ClassesAvailable";
+import { StudentContextProvider } from "./contexts/StudentContext";
 
 export function Router() {
   return (
@@ -20,10 +22,14 @@ export function Router() {
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
         <Route
-          path="/login"
+          path="/"
           element={
             <AuthContextProvider>
-              <LoginPage />
+              <ColabContextProvider>
+                <StudentContextProvider>
+                  <LoginPage />
+                </StudentContextProvider>
+              </ColabContextProvider>
             </AuthContextProvider>
           }
         />
@@ -93,6 +99,18 @@ export function Router() {
             <AuthContextProvider>
               <ClassesContextProvider>
                 <ClassPage type="edit" />
+              </ClassesContextProvider>
+            </AuthContextProvider>
+          }
+        />
+
+        {/* Student Routes */}
+        <Route
+          path="/aulas-disponiveis"
+          element={
+            <AuthContextProvider>
+              <ClassesContextProvider>
+                <ClassesAvailable />
               </ClassesContextProvider>
             </AuthContextProvider>
           }

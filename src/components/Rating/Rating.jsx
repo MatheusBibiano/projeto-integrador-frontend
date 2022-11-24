@@ -37,7 +37,7 @@ export function Rating({ data }) {
             ${!data.mensagem && "flex-col"}
         `}
       >
-        <h2 className="font-semibold text-base truncate text-[#FEFEFE]">
+        <h2 className="font-normal text-base truncate text-[#FEFEFE]">
           {data.tema}
         </h2>
       </header>
@@ -82,8 +82,8 @@ export function Rating({ data }) {
             <BiTrashAlt
               className="
               text-[#FEFEFE]/50
-              active:text-[#fa5268]
-              group-hover:text-[#fa5268]
+              active:text-[#fa677a]
+              group-hover:text-[#fa677a]
             "
               size={24}
             />

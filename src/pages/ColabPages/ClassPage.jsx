@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import { useClasses } from "../contexts/ClassesContext";
-import { Input } from "../components/Input/Input";
-import { Button } from "../components/Button/Button";
-import { BackButton } from "../components/BackButton/BackButton";
-import { ColabHeader } from "../components/ColabHeader/ColabHeader";
-import { formatDate } from "../scripts/formatDate";
-import { Toastr } from "../components/Toastr/Toastr";
+import { useAuth } from "../../contexts/AuthContext";
+import { useClasses } from "../../contexts/ClassesContext";
+import { Input } from "../../components/Input/Input";
+import { Button } from "../../components/Button/Button";
+import { BackButton } from "../../components/BackButton/BackButton";
+import { ColabHeader } from "../../components/Header/ColabHeader";
+import { formatDate } from "../../scripts/formatDate";
+import { Toastr } from "../../components/Toastr/Toastr";
 
 import { BiEditAlt } from "react-icons/bi";
 import { FiCopy } from "react-icons/fi";
@@ -28,7 +28,7 @@ export function ClassPage({ type }) {
   useEffect(() => {
     if (!isLogged) {
       logout();
-      navigate("/login");
+      navigate("/");
     }
   }, [isLogged]);
 

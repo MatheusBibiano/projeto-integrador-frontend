@@ -1,6 +1,5 @@
 import { FilterOption } from "./FilterOption";
 import { BsFilter } from "react-icons/bs";
-import { useClasses } from "../../contexts/ClassesContext";
 import { useRatings } from "../../contexts/RatingsContext";
 
 export function Filter({ list }) {

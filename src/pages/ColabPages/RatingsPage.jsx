@@ -1,32 +1,26 @@
 import { useEffect } from "react";
-import { Rating } from "../components/Rating/Rating";
-import { Loading } from "../components/Loading/Loading";
-import { useRatings } from "../contexts/RatingsContext";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import { useColab } from "../contexts/ColabContext";
-import { useClasses } from "../contexts/ClassesContext";
-import { Navbar } from "../components/Navbar/Navbar";
-import { ColabHeader } from "../components/ColabHeader/ColabHeader";
-import { Filter } from "../components/Filter/Filter";
+import { Rating } from "../../components/Rating/Rating";
+import { Loading } from "../../components/Loading/Loading";
+import { useRatings } from "../../contexts/RatingsContext";
+import { useAuth } from "../../contexts/AuthContext";
+import { useClasses } from "../../contexts/ClassesContext";
+import { ColabNavbar } from "../../components/Navbar/ColabNavbar";
+import { ColabHeader } from "../../components/Header/ColabHeader";
+import { Filter } from "../../components/Filter/Filter";
 
-import noRatings from "../assets/icons/noRatings.svg";
+import noRatings from "../../assets/icons/noRatings.svg";
 
 export function RatingsPage() {
   const { data } = useRatings();
   const { isLogged, logout } = useAuth();
-  const { fkPerson, handleGetDashboardColabData } = useColab();
   const classes = useClasses();
   const navigate = useNavigate();
 
   useEffect(() => {
-    handleGetDashboardColabData(fkPerson);
-  }, []);
-
-  useEffect(() => {
     if (!isLogged) {
       logout();
-      navigate("/login");
+      navigate("/");
     }
   }, [isLogged]);
 
@@ -117,7 +111,7 @@ export function RatingsPage() {
         )}
       </article>
 
-      <Navbar />
+      <ColabNavbar />
     </div>
   );
 }

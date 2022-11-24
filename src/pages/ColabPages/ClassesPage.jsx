@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Navbar } from "../components/Navbar/Navbar";
-import { Loading } from "../components/Loading/Loading";
-import { Class } from "../components/Class/Class";
-import { Button } from "../components/Button/Button";
-import { useAuth } from "../contexts/AuthContext";
-import { useClasses } from "../contexts/ClassesContext";
-import { ColabHeader } from "../components/ColabHeader/ColabHeader";
+import { ColabHeader } from "../../components/Header/ColabHeader";
+import { ColabNavbar } from "../../components/Navbar/ColabNavbar";
+import { Loading } from "../../components/Loading/Loading";
+import { Class } from "../../components/Class/Class";
+import { Button } from "../../components/Button/Button";
+import { useAuth } from "../../contexts/AuthContext";
+import { useClasses } from "../../contexts/ClassesContext";
 
-import noClasses from "../assets/icons/noRatings.svg";
+import noClasses from "../../assets/icons/noRatings.svg";
 
 export function ClassesPage() {
   const { isLogged, logout } = useAuth();
@@ -18,7 +18,7 @@ export function ClassesPage() {
   useEffect(() => {
     if (!isLogged) {
       logout();
-      navigate("/login");
+      navigate("/");
     }
   }, [isLogged]);
 
@@ -113,7 +113,7 @@ export function ClassesPage() {
         )}
       </article>
 
-      <Navbar />
+      <ColabNavbar />
     </div>
   );
 }

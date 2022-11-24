@@ -7,7 +7,7 @@ import { TbStars } from "react-icons/tb";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useEffect } from "react";
 
-export function Navbar() {
+export function StudentNavbar() {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [path, setPath] = useState("");
@@ -40,13 +40,44 @@ export function Navbar() {
             <button
               className={`
                 flex flex-col items-center
+                rounded-xl
+                py-2
+                w-24
+                ${path === "/aulas-disponiveis" && "bg-[#FEFEFE]/10"}
+              `}
+              onClick={() => {
+                navigate("/aulas-disponiveis");
+              }}
+            >
+              <SiGoogleclassroom
+                className={`
+                  text-3xl 
+                  text-[#FEFEFE]/80 
+                  ${path === "/aulas-disponiveis" && "text-[#44a85d]"}
+                `}
+              />
+              <span
+                className={`
+                  text-sm 
+                  text-[#FEFEFE]/80 
+                  ${path === "/aulas-disponiveis" && "text-[#C6ECCC]"}
+                `}
+              >
+                Aulas
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              className={`
+                flex flex-col items-center
                 rounded-xl 
                 py-2 
                 w-24
                 ${path === "/avaliacoes" && "bg-[#FEFEFE]/10"}
               `}
               onClick={() => {
-                navigate("/avaliacoes");
+                navigate("/aulas-disponiveis");
               }}
             >
               <TbStars
@@ -64,37 +95,6 @@ export function Navbar() {
                 `}
               >
                 Avaliações
-              </span>
-            </button>
-          </li>
-          <li>
-            <button
-              className={`
-                flex flex-col items-center
-                rounded-xl
-                py-2
-                w-24
-                ${path === "/aulas" && "bg-[#FEFEFE]/10"}
-              `}
-              onClick={() => {
-                navigate("/aulas");
-              }}
-            >
-              <SiGoogleclassroom
-                className={`
-                  text-3xl 
-                  text-[#FEFEFE]/80 
-                  ${path === "/aulas" && "text-[#44a85d]"}
-                `}
-              />
-              <span
-                className={`
-                  text-sm 
-                  text-[#FEFEFE]/80 
-                  ${path === "/aulas" && "text-[#C6ECCC]"}
-                `}
-              >
-                Aulas
               </span>
             </button>
           </li>

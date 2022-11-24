@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../components/Input/Input";
 import { Button } from "../components/Button/Button";
 import { useAuth } from "../contexts/AuthContext";
+import { useColab } from "../contexts/ColabContext";
+import { useStudent } from "../contexts/StudentContext";
 import { Toastr } from "../components/Toastr/Toastr";
 
 import { BsFillPersonFill } from "react-icons/bs";
@@ -13,6 +15,8 @@ import image from "../assets/images/loginImage.svg";
 
 export function LoginPage() {
   const { authenticate, logout } = useAuth();
+  const { handleGetColab } = useColab();
+  const { handleGetStudent } = useStudent();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -41,9 +45,11 @@ export function LoginPage() {
       if (await authenticate(user)) {
         switch (sessionStorage.getItem("type")) {
           case "0":
-            navigate("/");
+            handleGetStudent(parseInt(sessionStorage.getItem("fkPessoa")));
+            navigate("/aulas-disponiveis");
             break;
           case "1":
+            handleGetColab(parseInt(sessionStorage.getItem("fkPessoa")));
             navigate("/avaliacoes");
             break;
         }
@@ -141,7 +147,7 @@ export function LoginPage() {
           alt="Ilustração de alunos"
           className="self-center h-[80%]"
         />
-        <p className="self-end text-right text-2xl max-w-[500px] text-[#FEFEFE] font-semibold border-r-4 border-[#FEFEFE] pr-4">
+        <p className="self-end text-right text-2xl max-w-[500px] text-[#FEFEFE] font-semibold border-r-4 border-[#FEFEFE] rounded-md pr-4">
           Ajude a construir um ambiente de ensino cada vez melhor
         </p>
       </aside>

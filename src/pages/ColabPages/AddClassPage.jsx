@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import { useClasses } from "../contexts/ClassesContext";
-import { Input } from "../components/Input/Input";
-import { Button } from "../components/Button/Button";
-import { BackButton } from "../components/BackButton/BackButton";
-import { ColabHeader } from "../components/ColabHeader/ColabHeader";
+import { useAuth } from "../../contexts/AuthContext";
+import { useClasses } from "../../contexts/ClassesContext";
+import { Input } from "../../components/Input/Input";
+import { Button } from "../../components/Button/Button";
+import { BackButton } from "../../components/BackButton/BackButton";
+import { ColabHeader } from "../../components/Header/ColabHeader";
 
 export function AddClassPage() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export function AddClassPage() {
   useEffect(() => {
     if (!isLogged) {
       logout();
-      navigate("/login");
+      navigate("/");
     }
   }, [isLogged]);
 

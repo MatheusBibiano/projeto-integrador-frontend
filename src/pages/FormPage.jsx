@@ -5,6 +5,7 @@ import { Button } from "../components/Button/Button";
 import { useRatings } from "../contexts/RatingsContext";
 import { FaceInput } from "../components/FaceInput/FaceInput";
 import { getCurrentURLParams } from "../scripts/getCurrentURLParams";
+import { Toastr } from "../components/Toastr/Toastr";
 
 import {
   BsEmojiAngry,
@@ -18,6 +19,7 @@ import { useEffect } from "react";
 export function FormPage() {
   const [radioValue, setRadioValue] = useState();
   const [textareaValue, setTextareaValue] = useState("");
+  const [successToastr, setSuccessToastr] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const { handleAddRating } = useRatings();
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ export function FormPage() {
       Object.keys(urlParams).length < 5 ||
       Object.keys(urlParams).length > 5
     ) {
-      navigate("/login");
+      navigate("/");
     }
   }, []);
 
@@ -80,6 +82,12 @@ export function FormPage() {
     document.querySelector("#warningMessage").style.display = "flex";
   }
 
+  function resetForm() {
+    document.querySelector("#formRate").reset();
+    setRadioValue(null);
+    setTextareaValue("");
+  }
+
   function sendRating() {
     if (radioValue) {
       const newRating = {
@@ -91,7 +99,9 @@ export function FormPage() {
       };
 
       handleAddRating(newRating);
+      setSuccessToastr(true);
       setIsSent(true);
+      resetForm();
     } else {
       showWarning();
     }
@@ -118,9 +128,10 @@ export function FormPage() {
         p-4
         sm:p-10
     "
+        id="formRate"
       >
         <header className="flex flex-col items-center mb-8">
-          <h1 className="font-bold text-3xl text-[#FEFEFE] text-center mb-2">
+          <h1 className="font-bold text-2xl text-[#FEFEFE] text-center mb-2">
             Avalie a qualidade da aula!
           </h1>
           <div className="flex flex-col sm:flex-row items-center justify-center">
@@ -173,7 +184,7 @@ export function FormPage() {
               -bottom-[3px]
               sm:top-0
               sm:bottom-[78%]
-              px-3
+              px-1
               py-1
               text-white
               text-sm
@@ -227,14 +238,13 @@ export function FormPage() {
           Enviar
         </Button>
 
-        {/* {isSent && (
-          <Snack
-            title="Obrigado pelo feedback!"
-            message="Seu feedback foi enviado com sucesso."
-            type="success"
-            pos="top-right"
+        {isSent && successToastr ? (
+          <Toastr
+            title="Enviado!"
+            message="Obrigado pelo feedback."
+            stateSetter={setSuccessToastr}
           />
-        )} */}
+        ) : null}
       </form>
     </div>
   );
