@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/Input/Input";
 import { Button } from "../components/Button/Button";
 import { useAuth } from "../contexts/AuthContext";
+import { useColab } from "../contexts/ColabContext";
+import { useStudent } from "../contexts/StudentContext";
+import { Toastr } from "../components/Toastr/Toastr";
 
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
@@ -11,10 +14,18 @@ import logo from "../assets/icons/logo.svg";
 import image from "../assets/images/loginImage.svg";
 
 export function LoginPage() {
-  const { authenticate } = useAuth();
+  const { authenticate, logout } = useAuth();
+  const { handleGetColab } = useColab();
+  const { handleGetStudent } = useStudent();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [incorretCredentials, setIncorretCredentials] = useState();
+  const [emptyFields, setEmptyFields] = useState();
+
+  useEffect(() => {
+    logout();
+  }, []);
 
   function isFormDataValid() {
     setUsername(username.trim());
@@ -27,13 +38,26 @@ export function LoginPage() {
       const user = {
         Username: username,
         Password: password,
-        Type: 99,
-        FkPessoa: 0,
+        Type: undefined,
+        FkPessoa: null,
       };
 
       if (await authenticate(user)) {
-        navigate("/dashboard");
+        switch (sessionStorage.getItem("type")) {
+          case "0":
+            handleGetStudent(parseInt(sessionStorage.getItem("fkPessoa")));
+            navigate("/aulas-disponiveis");
+            break;
+          case "1":
+            handleGetColab(parseInt(sessionStorage.getItem("fkPessoa")));
+            navigate("/avaliacoes");
+            break;
+        }
+      } else {
+        setIncorretCredentials(true);
       }
+    } else {
+      setEmptyFields(true);
     }
   }
 
@@ -76,12 +100,9 @@ export function LoginPage() {
           md:p-10
           md:w-2/5
 
-          bg-transparent
-          md:bg-white
+          bg-[#2b292e]
 
           rounded-none
-          md:rounded-tr-lg
-          md:rounded-br-lg
 
           shadow-none
           md:shadow-2xl
@@ -95,7 +116,7 @@ export function LoginPage() {
         <h1
           className="
             self-center
-            text-center text-[#29292E] text-4xl
+            text-center text-[#F5F5F5] text-4xl
             font-extrabold mb-10
           "
         >
@@ -106,16 +127,16 @@ export function LoginPage() {
           state={{ getter: username, setter: setUsername }}
           type="text"
           labelFor="Usuário"
-          icon={<BsFillPersonFill className="text-[#A1A1AA] text-lg" />}
+          icon={<BsFillPersonFill className="text-[#F5F5F5]/50 text-lg" />}
         />
         <Input
           state={{ getter: password, setter: setPassword }}
           type="password"
           labelFor="Senha"
-          icon={<HiLockClosed className="text-[#A1A1AA] text-lg" />}
+          icon={<HiLockClosed className="text-[#F5F5F5]/50 text-lg" />}
         />
 
-        <Button onClick={login} className="mt-20">
+        <Button type="submit" onClick={login} className="mt-20">
           Entrar
         </Button>
       </form>
@@ -126,10 +147,28 @@ export function LoginPage() {
           alt="Ilustração de alunos"
           className="self-center h-[80%]"
         />
-        <p className="self-end text-right text-2xl max-w-[500px] text-white font-semibold">
+        <p className="self-end text-right text-2xl max-w-[500px] text-[#FEFEFE] font-semibold border-r-4 border-[#FEFEFE] rounded-md pr-4">
           Ajude a construir um ambiente de ensino cada vez melhor
         </p>
       </aside>
+
+      {incorretCredentials && (
+        <Toastr
+          title="Atenção!"
+          message="Usuário ou senha incorretos."
+          type="warning"
+          stateSetter={setIncorretCredentials}
+        />
+      )}
+
+      {emptyFields && (
+        <Toastr
+          title="Atenção!"
+          message="Preencha todos os campos corretamente."
+          type="warning"
+          stateSetter={setEmptyFields}
+        />
+      )}
     </div>
   );
 }

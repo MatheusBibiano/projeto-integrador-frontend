@@ -9,6 +9,7 @@
 
 #root {
   @apply flex flex-1
+  w-full;
 }
 
 * {
@@ -18,6 +19,7 @@
 
 body {
   @apply flex
-  bg-white
-  md:bg-[#F5F5F5];
+  h-full
+  w-full
+  bg-[#2b292e];
 }

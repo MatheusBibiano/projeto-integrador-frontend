@@ -6,7 +6,7 @@ export function getCurrentURLParams() {
   const urlParams = new URLSearchParams(window.location.search);
   const paramArray = {};
 
-  for(const [key, value] of urlParams) {
+  for (const [key, value] of urlParams) {
     paramArray[key] = value;
   }
 

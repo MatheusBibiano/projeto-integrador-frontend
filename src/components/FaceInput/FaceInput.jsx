@@ -32,7 +32,7 @@ export function FaceInput({ id, data, setRadioValue }) {
       <label
         htmlFor={`face-${id}`}
         className="
-          border-2 border-[#A1A1AA]
+          
           px-4 py-2
           rounded-lg
           cursor-pointer

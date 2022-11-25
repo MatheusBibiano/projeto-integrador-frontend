@@ -1,23 +1,29 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { useAxios } from "../hooks/useAxios";
 import { axiosAPI } from "../services/axios";
 
 const RatingContext = createContext();
 
 export function RatingContextProvider({ children }) {
-  // GET ALL
-  const { data, mutate } = useAxios("Avaliacao/Listar");
+  const [filterByClass, setFilterByClass] = useState();
+
+  // GET
+  const { data, mutate } = useAxios(
+    parseInt(filterByClass)
+      ? `Avaliacao/ListarPorAula?fkAula=${filterByClass}`
+      : `Avaliacao/Listar?fkDisc=${sessionStorage.getItem("discId")}`
+  );
 
   // POST
   function handleAddRating(newRating) {
-    axiosAPI.post("/NovaAvaliacao", newRating);
-    mutate([...data, newRating], false);
+    axiosAPI.post("Avaliacao/NovaAvaliacao", newRating);
+    // mutate([...data, newRating], false);
   }
 
   // DELETE
-  function handleRemoveRating(rating) {
-    axiosAPI.delete("/Excluir", { data: rating });
-    const updateRatings = data?.filter((current) => current.idAval !== rating.idAval);
+  function handleRemoveRating(id) {
+    axiosAPI.delete(`Avaliacao/Excluir?id=${id}`);
+    const updateRatings = data?.filter((current) => current.idAval !== id);
     mutate(updateRatings, false);
   }
 
@@ -25,6 +31,7 @@ export function RatingContextProvider({ children }) {
     <RatingContext.Provider
       value={{
         data,
+        setFilterByClass,
         handleAddRating,
         handleRemoveRating,
       }}

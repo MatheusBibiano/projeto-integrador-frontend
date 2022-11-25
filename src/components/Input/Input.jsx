@@ -1,20 +1,22 @@
 import { removeAccents } from "../../scripts/removeAccents";
+
 import styles from "./Input.module.css";
 
-export function Input({ type, labelFor, icon, state }) {
+export function Input({ type, labelFor, icon, state, disabled }) {
   return (
-    <div className="flex flex-col mb-8">
+    <fieldset className="flex flex-col mb-8 min-w-[240px]">
       <label
         htmlFor={removeAccents(labelFor)}
-        className="text-lg text-[#29292E] ml-2"
+        className="text-lg text-[#F5F5F5] ml-2"
       >
         {labelFor}
       </label>
       <div
         className="
           flex items-center
-          bg-[#F5F5F5]
-          border-2 border-[#A1A1AA]
+          bg-trasparent
+          border-2 border-[#F5F5F5]/50
+          min-h-10
           rounded-lg
           focus-within:border-[#8257E5]
         "
@@ -22,25 +24,34 @@ export function Input({ type, labelFor, icon, state }) {
         <input
           type={type}
           id={removeAccents(labelFor)}
-          className="
+          className={`
             flex-1
+            w-full
             h-full
             pl-2
+            py-[9px]
+            ${type === "date" ? "py-0 h-[41px]" : "py-[9px]"}
             border-none
-            text-lg text-[#29292E]
+            text-lg text-[#F5F5F5]
             outline-none
             rounded-lg
             bg-transparent
-          "
+            ${type === "date" && styles.datepicker}
+          `}
           value={state.getter}
           onChange={(event) => {
             state.setter(event.target.value);
           }}
           autoComplete="off"
           maxLength={32}
+          disabled={disabled}
         />
-        <div className="flex items-center justify-center p-3">{icon}</div>
+        {type !== "date" && (
+          <div className="flex items-center justify-center p-3 max-w-fit">
+            {icon}
+          </div>
+        )}
       </div>
-    </div>
+    </fieldset>
   );
 }

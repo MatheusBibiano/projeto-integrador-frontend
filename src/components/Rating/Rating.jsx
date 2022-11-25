@@ -1,13 +1,14 @@
 import { RatingTag } from "../RatingTag/RatingTag";
 import { useRatings } from "../../contexts/RatingsContext";
+import { useNavigate } from "react-router-dom";
 import { convertQuality } from "../../scripts/convertQuality";
 
-import { RiQuestionAnswerLine } from "react-icons/ri";
-import { FiTrash } from "react-icons/fi";
+import { BiTrashAlt, BiChat } from "react-icons/bi";
 
 export function Rating({ data }) {
   const [content, type] = convertQuality(data.qualidade);
   const { handleRemoveRating } = useRatings();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -19,13 +20,14 @@ export function Rating({ data }) {
       gap-4
       justify-between
       p-5
-      bg-white
+      bg-[#201f22]
       shadow-lg
       rounded-lg
       w-full
       h-fit
       md:w-fit
       md:max-w-[45%]
+      min-w-[250px]
     "
     >
       <header
@@ -35,46 +37,53 @@ export function Rating({ data }) {
             ${!data.mensagem && "flex-col"}
         `}
       >
-        <h2 className="font-semibold text-base truncate">
-          Introdução a jQuery
+        <h2 className="font-normal text-base truncate text-[#FEFEFE]">
+          {data.tema}
         </h2>
       </header>
 
       {data.mensagem && (
-        <p className="text-#29292E] truncate">{data.mensagem}</p>
+        <p className="text-[#FEFEFE]/70 truncate">{data.mensagem}</p>
       )}
 
       <footer
         className="
           flex
-          justify-end
-          md:justify-start
+          justify-between
           items-center
           gap-4
         "
       >
         <RatingTag type={type}>{content}</RatingTag>
-        <div className="flex justify-end gap-4 w-full">
-          <button title="Responder" className="mt-1 outline-[#996DFF]">
-            <RiQuestionAnswerLine
+        <div className="flex justify-end gap-2 w-full max-w-fit ml-4">
+          <button
+            title="Responder"
+            className="outline-[#996DFF] p-2 active:bg-[#FEFEFE]/10 md:hover:bg-[#FEFEFE]/10 rounded-md group min-w-fit"
+            onClick={() => {
+              navigate("/avaliacao", { state: data });
+            }}
+          >
+            <BiChat
               className="
-              text-[#737380]
-              hover:text-[#8257E5]
+              text-[#FEFEFE]/50
+              active:text-[#996DFF]
+              md:group-hover:text-[#996DFF]
             "
               size={24}
             />
           </button>
           <button
-            className="outline-[#996DFF]"
+            className="outline-[#996DFF] p-2 active:bg-[#FEFEFE]/10 md:hover:bg-[#FEFEFE]/10 rounded-md group min-w-fit"
             title="Excluir"
             onClick={() => {
-              handleRemoveRating(data);
+              handleRemoveRating(data.idAval);
             }}
           >
-            <FiTrash
+            <BiTrashAlt
               className="
-              text-[#737380]
-              hover:text-red-400
+              text-[#FEFEFE]/50
+              active:text-[#fa677a]
+              group-hover:text-[#fa677a]
             "
               size={24}
             />
