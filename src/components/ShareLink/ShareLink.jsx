@@ -32,7 +32,7 @@ export function ShareLink({ link, setter }) {
         </div>
         <Button
           onClick={() => {
-            navigator.clipboard.writeText(link);
+            document.execCommand("", undefined, link)
             setter(false);
           }}
         >
