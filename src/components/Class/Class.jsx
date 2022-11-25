@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { dateTimeToDate } from "../../scripts/convertDateTimeToDate";
 import { ShareLink } from "../ShareLink/ShareLink";
-import { currentHost } from "../../services/axios";
 
 import { HiOutlineCalendar } from "react-icons/hi";
 import { BiShareAlt, BiEditAlt } from "react-icons/bi";
@@ -16,7 +15,11 @@ export function Class({ data, discId }) {
     "colabName"
   )} ${sessionStorage.getItem("colabSobrenome")}`;
   const disciplina = sessionStorage.getItem("discNome");
-  const formURL = `http://${currentHost}:3000/avaliar-aula?tema=${data.tema}&prof=${professor}&discId=${discId}&disc=${disciplina}&idAula=${data.idAula}`;
+  const formURL = `http://${import.meta.env.VITE_HOST}:3000/avaliar-aula?tema=${
+    data.tema
+  }&prof=${professor}&discId=${discId}&disc=${disciplina}&idAula=${
+    data.idAula
+  }`;
 
   return (
     <div className="flex p-4 bg-[#201f22] justify-between gap-6 rounded-lg shadow-md">
