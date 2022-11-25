@@ -15,7 +15,7 @@ export function Class({ data, discId }) {
     "colabName"
   )} ${sessionStorage.getItem("colabSobrenome")}`;
   const disciplina = sessionStorage.getItem("discNome");
-  const formURL = `http://${import.meta.env.VITE_HOST}:3000/avaliar-aula?tema=${
+  const formURL = `http://${import.meta.env.VITE_FORM_PATH}/avaliar-aula?tema=${
     data.tema
   }&prof=${professor}&discId=${discId}&disc=${disciplina}&idAula=${
     data.idAula
